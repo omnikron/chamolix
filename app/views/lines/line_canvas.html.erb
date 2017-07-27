@@ -1,0 +1,19 @@
+<h4><%= line.name %></h4>
+
+<% if line.coordinates %>
+<canvas id="line_canvas" width="578" height="200"></canvas>
+
+<script>
+  var canvas = document.getElementById('line_canvas');
+  var context = canvas.getContext('2d');
+  context.beginPath();
+  <% line.coordinates.each do |set| %>
+    context.moveTo(<%= set.points.first.x %>, <%= set.points.first.y %>);
+    <% set.points[1..-1].each do |point| %>
+    context.lineTo(<%= point.x %>, <%= point.y %>);
+    <% end %>
+    context.stroke();
+  <% end %>
+</script>
+
+<% end %>

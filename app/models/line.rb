@@ -1,5 +1,5 @@
 class Line
-  PROPERTIES = %i[id description name ski_difficulty]
+  PROPERTIES = %i[id description name ski_difficulty geo_data]
 
   attr_accessor *PROPERTIES
 
@@ -19,5 +19,17 @@ class Line
     hash.slice(*PROPERTIES).each do |key, value|
       send("#{key}=", value)
     end
+  end
+
+  def coordinates
+    return nil if geo_data.blank?
+
+    @coordinates = geo_data.dig("coordinates").map do |coords|
+      Coordinates.new(coords)
+    end
+  end
+
+  def to_hash
+    {id: id, description: description, name: name, ski_difficulty: ski_difficulty }
   end
 end

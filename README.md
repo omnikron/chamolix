@@ -24,3 +24,11 @@ sort_direction    # asc(default) or desc
 
 e.g.
 `http://localhost:3000/lines?name_search=couloir&difficulty_filter=3&sort_key=ski_difficulty&sort_direction=desc`
+
+
+## View
+Any line with geo coordinates can be viewed at `/lines/:id`
+This returns html that would display the line, if I had had time
+to figure out how to convert lat/long to canvas coordinates
+
+e.g.  http://localhost:3000/lines/9514
