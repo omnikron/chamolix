@@ -1,24 +1,26 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## Requirements
+Ruby 2+, bundler
 
-Things you may want to cover:
+## How to run
+```
+git clone git@github.com:omnikron/chamolix.git && cd chamolix
+bundle install
+rails s
+```
 
-* Ruby version
+API will be running at http://localhost:3000.
 
-* System dependencies
+## Search
+To search/sort/filter results use the following query params, which can be used alone (except for `sort_direction`) or in conjunction with each other:
 
-* Configuration
+```
+name_search       # text, case-insensitive
+difficulty_filter # 1-5
+sort_key          # name, id, ski_difficulty
+sort_direction    # asc(default) or desc
+```
 
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+e.g.
+`http://localhost:3000/lines?name_search=couloir&difficulty_filter=3&sort_key=ski_difficulty&sort_direction=desc`
