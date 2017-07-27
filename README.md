@@ -13,7 +13,8 @@ rails s
 API will be running at http://localhost:3000.
 
 ## Search
-To search/sort/filter results use the following query params, which can be used alone (except for `sort_direction`) or in conjunction with each other:
+To search/sort/filter results use the following query params, which can be used
+alone (except for `sort_direction`) or in conjunction with each other:
 
 ```
 name_search       # text, case-insensitive
@@ -23,12 +24,14 @@ sort_direction    # asc(default) or desc
 ```
 
 e.g.
-`http://localhost:3000/lines?name_search=couloir&difficulty_filter=3&sort_key=ski_difficulty&sort_direction=desc`
+http://localhost:3000/lines?name_search=couloir&difficulty_filter=3&sort_key=name&sort_direction=desc
 
 
 ## View
-Any line with geo coordinates can be viewed at `/lines/:id`
-This returns html that would display the line, if I had had time
-to figure out how to convert lat/long to canvas coordinates
+Any line with geo coordinates can be viewed at `/lines/:id` This returns html
+that _would_ display the line, except I ran out of time before figuring out how
+to convert lat/long to canvas-compatible coordinates. If you load the html up
+in a browser it does actually print each point out, but they're all so close
+together that all you see is a sad little dot.
 
 e.g.  http://localhost:3000/lines/9514
