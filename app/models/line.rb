@@ -1,9 +1,14 @@
 class Line
-  PROPERTIES = %i[name ski_difficulty]
+  PROPERTIES = %i[id description name ski_difficulty]
 
   attr_accessor *PROPERTIES
+
   class << self
     delegate :count, :search, :sort, to: :collection
+
+    def all
+      collection.lines
+    end
 
     def collection
       LineCollection.new
