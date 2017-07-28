@@ -29,9 +29,6 @@ http://localhost:3000/lines?name_search=couloir&difficulty_filter=3&sort_key=nam
 
 ## View
 Any line with geo coordinates can be viewed at `/lines/:id` This returns html
-that _would_ display the line, except I ran out of time before figuring out how
-to convert lat/long to canvas-compatible coordinates. If you load the html up
-in a browser it does actually print each point out, but they're all so close
-together that all you see is a sad little dot.
+that displays the line in a canvas element.
 
 e.g.  http://localhost:3000/lines/9514

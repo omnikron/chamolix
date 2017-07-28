@@ -1,7 +1,7 @@
 <h4><%= line.name %></h4>
 
 <% if line.coordinates %>
-<canvas id="line_canvas" width="578" height="200"></canvas>
+<canvas id="line_canvas" width="1000" height="1000"></canvas>
 
 <script>
   var canvas = document.getElementById('line_canvas');
@@ -9,8 +9,8 @@
   context.beginPath();
   <% line.coordinates.each do |set| %>
     context.moveTo(<%= set.points.first.x %>, <%= set.points.first.y %>);
-    <% set.points[1..-1].each do |point| %>
-    context.lineTo(<%= point.x %>, <%= point.y %>);
+    <% set.points.each do |point| %>
+      context.lineTo(<%= point.x %>, <%= point.y %>);
     <% end %>
     context.stroke();
   <% end %>
