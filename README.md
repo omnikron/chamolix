@@ -1,7 +1,7 @@
 # README
 
 ## Requirements
-Ruby 2+, bundler
+Ruby 2.2.2+, bundler
 
 ## How to run
 ```
