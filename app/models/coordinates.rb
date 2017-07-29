@@ -7,15 +7,15 @@ class Coordinates
     end
 
     @points ||= coordinates.map do |coords|
-      Point.new(*convert_to_canvas_coords(coords, 200, 500))
+      Point.new(*convert_to_canvas_coords(coords))
     end
   end
 
-  def convert_to_canvas_coords(coords, canvas_width, canvas_height)
+  def convert_to_canvas_coords(coords)
     geo_x = coords[0]
     geo_y = coords[1]
 
-    width_ratio = (geo_x - min_x) / geo_width * 10
+    width_ratio = (geo_x - min_x) / geo_width * 20
     height_ratio = (geo_y - min_y) / geo_height * 10
     [geo_x * width_ratio, geo_y * height_ratio]
   end

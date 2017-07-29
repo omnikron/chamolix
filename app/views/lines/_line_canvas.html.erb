@@ -1,0 +1,23 @@
+<% cache "line_#{line.id}" do %>
+  <div class='line'>
+    <h4><%= link_to line.name, line_path(line.id) %></h4>
+
+    <% if line.coordinates %>
+      <canvas id=<%= "line_canvas_#{line.id}"%> width="1000" height="500"></canvas>
+
+      <script>
+        var canvas = document.getElementById('<%= "line_canvas_#{line.id}"%>');
+        var context = canvas.getContext('2d');
+        context.beginPath();
+        <% line.coordinates.each do |set| %>
+          context.moveTo(<%= set.points.first.x %>, <%= set.points.first.y %>);
+            <% set.points.each do |point| %>
+              context.lineTo(<%= point.x %>, <%= point.y %>);
+          <% end %>
+          context.stroke();
+        <% end %>
+      </script>
+
+    <% end %>
+  </end>
+<% end %>

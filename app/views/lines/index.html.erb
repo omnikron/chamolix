@@ -1,0 +1,27 @@
+<style type="text/css">  
+  html { height: 100% }  
+  body { height: 100%; margin: 25px; padding: 0 }  
+  #map_canvas { height: 100% }  
+</style>  
+
+<div class='filters'>
+  <%= form_tag :lines, method: :get do |f| %>
+    <%= label_tag :name_search %>
+    <%= text_field_tag :name_search, name_search %>
+    <%= label_tag :difficulty_filter %>
+    <%= select_tag :difficulty_filter, options_for_select(1..5, difficulty_filter), include_blank: true %>
+    <%= label_tag :sort_key %>
+    <%= select_tag :sort_key, options_for_select([:ski_difficulty, :id, :name, :description], sort_key), include_blank: true %>
+    <%= label_tag :sort_direction %>
+    <%= select_tag :sort_direction, options_for_select([:asc, :desc], sort_direction), include_blank: true %>
+    <%= submit_tag %>
+  <% end %>
+
+  <%# paginate @lines %>
+</div>
+
+<div class='lines'>
+  <% @lines.each do |line| %>
+      <%= render 'line_canvas', line: line %>
+  <% end %>
+</div>
