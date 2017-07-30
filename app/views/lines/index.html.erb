@@ -1,7 +1,6 @@
 <style type="text/css">  
   html { height: 100% }  
   body { height: 100%; margin: 25px; padding: 0 }  
-  #map_canvas { height: 100% }  
 </style>  
 
 <div class='filters'>
@@ -17,7 +16,9 @@
     <%= submit_tag %>
   <% end %>
 
-  <%# paginate @lines %>
+  <div class='stats'>
+    <p><%= @lines.count %> lines found.</p>
+  </div>
 </div>
 
 <div class='lines'>
