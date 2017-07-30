@@ -21,7 +21,5 @@
 </div>
 
 <div class='lines'>
-  <% @lines.each do |line| %>
-      <%= render 'line_canvas', line: line %>
-  <% end %>
+  <%= render partial: 'line', collection: @lines, cached: true %>
 </div>

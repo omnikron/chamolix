@@ -1,12 +1,15 @@
 class LinesController < ApplicationController
   include ActionController::MimeResponds
+  include ActionController::Helpers
+  include ActionController::Caching
 
   helper_method :difficulty_filter, :name_search, :sort_direction, :sort_key
 
   def index
-    @lines = Line.search(:name, line_params[:name_search])
-    .search(:ski_difficulty, line_params[:difficulty_filter])
-    .sort(line_params[:sort_key], line_params[:sort_direction]).lines
+    @lines = Line.search(:name, name_search)
+    .search(:ski_difficulty, difficulty_filter)
+    .sort(sort_key, sort_direction)
+    .lines
 
     respond_to do |format|
       format.html { render :index }
@@ -15,14 +18,15 @@ class LinesController < ApplicationController
   end
 
   def show
-    @line = Line.search(:id, line_params[:id]).first
-    if @line.blank?
+    line = Line.search(:id, line_params[:id]).first
+
+    if line.blank?
       head :not_found and return
     end
 
     respond_to do |format|
-      format.json { render json: render_to_string(partial: 'line_canvas.html.erb', locals: { line: @line }) }
-      format.html { render partial: 'line_canvas', locals: { line: @line } }
+      format.json { render json: render_to_string(partial: 'line.html.erb', locals: { line: line }) }
+      format.html { render partial: 'line', locals: { line: line }, cached: true }
     end
   end
 

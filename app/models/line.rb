@@ -32,4 +32,8 @@ class Line
   def to_hash
     {id: id, description: description, name: name, ski_difficulty: ski_difficulty }
   end
+
+  def cache_key
+    "line_#{id}"
+  end
 end
